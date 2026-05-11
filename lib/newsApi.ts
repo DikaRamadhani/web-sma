@@ -1,7 +1,7 @@
 import axios from "axios";
 import { News } from "@/types/type";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8081/api";
+const API_BASE_URL = 'https://sman-delta.vercel.app';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,

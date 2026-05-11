@@ -1,4 +1,4 @@
-export const api = 'http://localhost:8081'
+export const api = 'https://sman-delta.vercel.app'
 export const api_news = `${api}/api/news`
 export const api_images = `${api}/uploads`
 
