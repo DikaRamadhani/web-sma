@@ -41,7 +41,7 @@ export default function LoginPage() {
         {/* Background Image scoped to left side */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/img/library_reading_3d.png"
+            src="/img/3.jpeg"
             alt="Library 3D"
             fill
             className="object-cover"
@@ -157,12 +157,6 @@ export default function LoginPage() {
                 />
                 <span className="text-slate-600 font-medium">Ingat saya</span>
               </label>
-              <Link
-                href="#"
-                className="text-brand-primary font-semibold hover:text-brand-primary-dark transition-colors"
-              >
-                Lupa Password?
-              </Link>
             </div>
 
             <button
@@ -179,16 +173,6 @@ export default function LoginPage() {
               )}
             </button>
           </form>
-
-          <p className="text-center text-slate-500 text-sm">
-            Butuh bantuan akses?{" "}
-            <Link
-              href="/main/hubungi-kami"
-              className="text-brand-primary font-bold hover:text-brand-primary-dark transition-colors"
-            >
-              Hubungi IT Support
-            </Link>
-          </p>
         </div>
       </div>
     </div>
