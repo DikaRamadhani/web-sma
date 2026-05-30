@@ -42,7 +42,7 @@ export default function AdminKepalaSekolahPage() {
 
     try {
       const formData = new FormData();
-      formData.append("nama", nama);
+      formData.append("name", nama);
       formData.append("content", content);
 
       if (foto) {
