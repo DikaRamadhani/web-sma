@@ -137,7 +137,14 @@ export default function AdminGuruStafPage() {
 
   const handleDelete = async (id: number) => {
     try {
-      const res = await axios.delete(`${api_guru}/${id}`);
+      const res = await axios.delete(`${api_guru}/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          withCredentials: true,
+        }
+      );
 
       toast.success(res.data.message);
       await refetch();
