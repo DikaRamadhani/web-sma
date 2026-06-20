@@ -26,9 +26,9 @@ export default function AdminLayout({
     return <p>Loading...</p>;
   }
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  if (!loading && !isAuthenticated) {
+  return null;
+  } 
 
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
