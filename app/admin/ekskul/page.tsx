@@ -130,7 +130,13 @@ export default function AdminEskulPage() {
 
   const handleDelete = async (slug: string) => {
     try {
-      const res = await axios.delete(`${api_eskul}/${slug}`);
+      const res = await axios.delete(`${api_eskul}/${slug}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          withCredentials: true,
+      });
 
       toast.success(res.data);
       await refetch();

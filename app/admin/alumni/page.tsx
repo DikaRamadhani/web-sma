@@ -104,7 +104,7 @@ export default function AdminAlumniPage() {
             withCredentials: true,
           });
 
-      toast.success(res.data);
+      toast.success(res.data.message);
 
       resetForm();
       setIsDialogOpen(false);
@@ -127,7 +127,7 @@ export default function AdminAlumniPage() {
         }
       );
 
-      toast.success(res.data);
+      toast.success(res.data.message);
       await refetch();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
