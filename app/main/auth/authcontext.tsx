@@ -28,43 +28,37 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-
   const refreshAccessToken = async () => {
-    try {
-      const res = await axios.post(api_refresh, {}, {
+  try {
+    const res = await axios.post(
+      api_refresh,
+      {},
+      {
         withCredentials: true,
-      });
+      },
+    );
 
-      const token = res.data.access_token;
-      if (token) {
-        localStorage.setItem("access_token", token);
-      }
-      setAccessToken(token);
+    const token = res.data.access_token;
 
-      return token;
-    } catch (error) {
-      setAccessToken(null);
-      setUser(null);
+    setAccessToken(token);
 
-      return null;
-    }
-  };
+    return token;
+  } catch {
+    // silent error (tidak ditampilkan sama sekali)
+    setAccessToken(null);
+    setUser(null);
+
+    return null;
+  }
+};
 
   useEffect(() => {
     const initAuth = async () => {
-      const storedToken = localStorage.getItem("access_token");
-      if (storedToken) {
-        setAccessToken(storedToken);
-      }     
       await refreshAccessToken();
       setLoading(false);
     };
@@ -86,9 +80,6 @@ export function AuthProvider({
       });
 
       const token = res.data.data.access_token;
-      if (token) {
-        localStorage.setItem("access_token", token);
-      }
       setAccessToken(token);
       setUser({
         username: res.data.data.username,
@@ -101,16 +92,19 @@ export function AuthProvider({
 
   const logout = async () => {
     try {
-      await axios.post(api_logout, {}, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
+      await axios.post(
+        api_logout,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          withCredentials: true,
         },
-        withCredentials: true,
-      });
+      );
     } catch {
       // lanjut clear state meski request gagal
     }
-    localStorage.removeItem("access_token");
     setAccessToken(null);
     setUser(null);
   };
@@ -136,9 +130,7 @@ export function useAuth() {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error(
-      "useAuth must be used inside AuthProvider",
-    );
+    throw new Error("useAuth must be used inside AuthProvider");
   }
 
   return context;
