@@ -34,6 +34,7 @@ export default function NewsDataTable() {
     totalPages,
     itemsPerPage,
     searchQuery,
+    isSubmitting,
     setSearchQuery,
     handleSave,
     handleEdit,
@@ -44,19 +45,19 @@ export default function NewsDataTable() {
 
 
   const { accessToken } = useAuth();
-  const deleteNews = async (slug: string) => {
-    const res = await axios.delete(`${api_news}/${slug}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    if (res.status === 200) {
+  const deleteNews = async (slug: string): Promise<void> => {
+    try {
+      const res = await axios.delete(`${api_news}/${slug}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       toast.success(res.data.message);
       await getNews();
-    } else {
-      toast.error(res.data.error);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error?.response?.data?.error || "Gagal menghapus berita");
     }
-    return res;
   };
 
 
@@ -123,9 +124,10 @@ export default function NewsDataTable() {
       />
       <NewsForm
         open={isFormOpen}
-        onOpenChange={setIsFormOpen}
+        onOpenChange={(v) => { if (!isSubmitting) setIsFormOpen(v) }}
         onSave={handleSave}
         initialData={editingNews}
+        isSubmitting={isSubmitting}
       />
     </div>
   );

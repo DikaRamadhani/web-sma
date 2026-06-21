@@ -19,6 +19,7 @@ type EskulFormDialogProps = {
   tujuan: string;
   prestasi: string;
   jadwal: string;
+  isSubmitting?: boolean;
   onOpenChange: (open: boolean) => void;
   onSubmit: (e: React.FormEvent) => void;
   onNamaChange: (value: string) => void;
@@ -37,6 +38,7 @@ export default function EskulFormDialog({
   tujuan,
   prestasi,
   jadwal,
+  isSubmitting = false,
   onOpenChange,
   onSubmit,
   onNamaChange,
@@ -121,11 +123,17 @@ export default function EskulFormDialog({
               onClick={() => onOpenChange(false)}
               variant="outline"
               className="rounded-lg px-6 cursor-pointer"
+              disabled={isSubmitting}
             >
               Batal
             </Button>
-            <Button type="submit" className="bg-brand-primary hover:bg-brand-primary/90 rounded-lg px-8 cursor-pointer">
-              {isEdit ? "Update Data" : "Simpan Data"}
+            <Button type="submit" className="bg-brand-primary hover:bg-brand-primary/90 rounded-lg px-8 cursor-pointer" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <span className="flex items-center gap-2">
+                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Menyimpan...
+                </span>
+              ) : (isEdit ? "Update Data" : "Simpan Data")}
             </Button>
           </DialogFooter>
         </form>

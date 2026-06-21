@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Trash2Icon } from "lucide-react"
 
 import {
@@ -16,14 +17,17 @@ import {
 import { Button } from "@/components/ui/button"
 
 type Props = {
-    onDelete: () => void
+    onDelete: () => Promise<void> | void
 }
 
 export function AlertDialogDestructive({ onDelete }: Props) {
+  const [open, setOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
   return (
-    <AlertDialog>
+    <AlertDialog open={open} onOpenChange={(v) => { if (!isLoading) setOpen(v) }}>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive">Delete</Button>
+        <Button variant="destructive" onClick={() => setOpen(true)}>Delete</Button>
       </AlertDialogTrigger>
 
       <AlertDialogContent size="sm">
@@ -40,17 +44,30 @@ export function AlertDialogDestructive({ onDelete }: Props) {
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel variant="outline">
+          <AlertDialogCancel variant="outline" disabled={isLoading}>
             Cancel
           </AlertDialogCancel>
 
           <AlertDialogAction
             variant="destructive"
-            onClick={async () => {
-              await onDelete()
+            disabled={isLoading}
+            onClick={async (e) => {
+              e.preventDefault()
+              setIsLoading(true)
+              try {
+                await onDelete()
+              } finally {
+                setIsLoading(false)
+                setOpen(false)
+              }
             }}
           >
-            Delete
+            {isLoading ? (
+              <span className="flex items-center gap-2">
+                <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                Menghapus...
+              </span>
+            ) : "Delete"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

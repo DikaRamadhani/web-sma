@@ -28,6 +28,7 @@ export default function AdminAlumniPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [nama, setNama] = useState("");
@@ -50,6 +51,7 @@ export default function AdminAlumniPage() {
   };
 
   const handleDialogChange = (open: boolean) => {
+    if (isSubmitting) return;
     setIsDialogOpen(open);
 
     if (!open) {
@@ -76,6 +78,7 @@ export default function AdminAlumniPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const formData = new FormData();
@@ -113,6 +116,8 @@ export default function AdminAlumniPage() {
     } catch (error: any) {
       console.error(error);
       toast.error(error?.response?.data?.error || "Terjadi kesalahan");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -254,6 +259,7 @@ export default function AdminAlumniPage() {
         nama={nama}
         universitas={universitas}
         tahun={tahun}
+        isSubmitting={isSubmitting}
         onOpenChange={handleDialogChange}
         onSubmit={handleSubmit}
         onNamaChange={setNama}

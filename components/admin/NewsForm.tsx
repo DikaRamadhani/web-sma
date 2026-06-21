@@ -30,6 +30,7 @@ interface NewsFormProps {
   onOpenChange: (open: boolean) => void; // Fungsi untuk mengubah status modal
   onSave: (formData: FormData) => void; // Fungsi yang dipanggil saat menyimpan
   initialData?: News | null; // Data awal untuk mode edit
+  isSubmitting?: boolean;
 }
 
 // Komponen utama untuk form berita
@@ -38,6 +39,7 @@ export default function NewsForm({
   onOpenChange,
   onSave,
   initialData,
+  isSubmitting = false,
 }: NewsFormProps) {
   // State untuk setiap field dalam form
   const [title, setTitle] = useState("");
@@ -137,17 +139,21 @@ export default function NewsForm({
           </div>
         </div>
         <DialogFooter>
-          {/* Tombol untuk membatalkan dan menutup modal */}
           <DialogClose asChild>
-            <Button type="button" variant="secondary">
+            <Button type="button" variant="secondary" disabled={isSubmitting}>
               Batal
             </Button>
           </DialogClose>
-          {/* Tombol untuk menyimpan data */}
-          {/* <Button type="submit" onClick={handleSubmit}>
-            Simpan
-          </Button> */}
-          <AlertDialogSure onSave={handleSubmit} />
+          {isSubmitting ? (
+            <Button disabled>
+              <span className="flex items-center gap-2">
+                <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                Menyimpan...
+              </span>
+            </Button>
+          ) : (
+            <AlertDialogSure onSave={handleSubmit} />
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>

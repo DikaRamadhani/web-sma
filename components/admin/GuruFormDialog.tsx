@@ -15,6 +15,7 @@ type GuruFormDialogProps = {
   isEdit: boolean;
   nama: string;
   jabatan: string;
+  isSubmitting?: boolean;
   onOpenChange: (open: boolean) => void;
   onSubmit: (e: React.FormEvent) => void;
   onNamaChange: (value: string) => void;
@@ -27,6 +28,7 @@ export default function GuruFormDialog({
   isEdit,
   nama,
   jabatan,
+  isSubmitting = false,
   onOpenChange,
   onSubmit,
   onNamaChange,
@@ -67,12 +69,18 @@ export default function GuruFormDialog({
               type="button"
               onClick={() => onOpenChange(false)}
               variant="outline"
+              disabled={isSubmitting}
             >
               Batal
             </Button>
 
-            <Button type="submit" className="bg-brand-primary">
-              {isEdit ? "Update" : "Simpan"}
+            <Button type="submit" className="bg-brand-primary" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <span className="flex items-center gap-2">
+                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Menyimpan...
+                </span>
+              ) : (isEdit ? "Update" : "Simpan")}
             </Button>
           </DialogFooter>
         </form>

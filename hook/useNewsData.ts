@@ -23,6 +23,7 @@ export function useNewsData(itemsPerPage: number = 5) {
   const [editingNews, setEditingNews] = useState<News | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { accessToken } = useAuth();
 
   // Memfilter berita berdasarkan query pencarian
@@ -70,6 +71,7 @@ export function useNewsData(itemsPerPage: number = 5) {
    * dan c.FormFile() untuk membaca data, bukan JSON.
    */
   const handleSave = async (formData: FormData) => {
+    setIsSubmitting(true);
     try {
       if (editingNews) {
         await updateNews(editingNews.slug, accessToken as string, formData);
@@ -84,6 +86,8 @@ export function useNewsData(itemsPerPage: number = 5) {
     } catch (error) {
       console.error("Gagal menyimpan berita:", error);
       toast.error("Gagal menyimpan berita");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -118,6 +122,7 @@ export function useNewsData(itemsPerPage: number = 5) {
     totalPages,
     itemsPerPage,
     searchQuery,
+    isSubmitting,
     setSearchQuery,
     handleSave,
     handleDelete,

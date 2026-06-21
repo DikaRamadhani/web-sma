@@ -9,7 +9,6 @@ import { toast } from "sonner";
 import { useKepalaDetail } from "@/hook/useKepala";
 import { api_kepala } from "@/constants/strings";
 import axios from "axios";
-import { set } from "react-hook-form";
 import { useAuth } from "@/app/main/auth/authcontext";
 
 export default function AdminKepalaSekolahPage() {
@@ -20,6 +19,7 @@ export default function AdminKepalaSekolahPage() {
   const [preview, setPreview] = useState<string>("");
 
   const [isEdit, setIsEdit] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { accessToken } = useAuth();
 
 
@@ -39,6 +39,7 @@ export default function AdminKepalaSekolahPage() {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const formData = new FormData();
@@ -66,6 +67,8 @@ export default function AdminKepalaSekolahPage() {
     } catch (error: any) {
       console.error(error);
       toast.error(error?.response?.data?.error || "Terjadi kesalahan");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -166,14 +169,25 @@ export default function AdminKepalaSekolahPage() {
               variant="ghost"
               className="rounded-xl px-8 text-slate-500 hover:text-slate-700 hover:bg-slate-100 flex items-center gap-2"
               onClick={() => setIsEdit(false)}
+              disabled={isSubmitting}
             >
               <ArrowLeft size={18} /> Kembali
             </Button>
             <Button
               type="submit"
               className="rounded-xl px-8 bg-brand-primary hover:bg-brand-primary/90 flex items-center gap-2"
+              disabled={isSubmitting}
             >
-              <Save size={18} /> Simpan Perubahan
+              {isSubmitting ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Menyimpan...
+                </>
+              ) : (
+                <>
+                  <Save size={18} /> Simpan Perubahan
+                </>
+              )}
             </Button>
           </div>
         </form>
