@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import RevealOnScroll from "@/components/animations/RevealOnScroll";
 import { ArrowRight, Quote } from "lucide-react";
-import { use } from "react";
 import { useKepalaDetail } from "@/hook/useKepala";
 
 export default function GreetingSection() {
@@ -28,13 +27,21 @@ export default function GreetingSection() {
             <div className="absolute -inset-4 border-2 border-brand-primary/20 rounded-2xl -z-10 translate-x-4 translate-y-4" />
             <div className="absolute inset-0 bg-brand-primary/10 rounded-2xl -z-10" />
 
-            <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src={kepala?.foto || "/default-kepala.jpg"}
-                alt="Kepala Sekolah"
-                fill
-                className="object-cover transition-transform duration-700 hover:scale-105"
-              />
+            <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl bg-slate-200">
+              {kepala?.foto ? (
+                <Image
+                  src={kepala.foto}
+                  alt="Kepala Sekolah"
+                  fill
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#a1a1aa" className="w-32 h-32 opacity-60">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                  </svg>
+                </div>
+              )}
 
               {/* Name Tag Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-brand-primary to-transparent text-white">

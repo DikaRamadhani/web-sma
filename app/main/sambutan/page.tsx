@@ -3,15 +3,11 @@
 import Sidebar from "@/components/news/SideNews";
 import RevealOnScroll from "@/components/animations/RevealOnScroll";
 import PageHero from "@/components/shared/PageHero";
-import Image from "next/image";
 import { Quote } from "lucide-react";
 import { useKepalaDetail } from "@/hook/useKepala";
 
 export default function Home() {
-  const { kepala, loading, error } = useKepalaDetail(1);
-
-  loading;
-  error;
+  const { kepala } = useKepalaDetail(1);
 
   return (
     <main className="bg-white min-h-screen">
@@ -32,7 +28,7 @@ export default function Home() {
                 <div className="relative h-full w-full rounded-3xl overflow-hidden shadow-2xl bg-slate-200">
                   {kepala?.foto ? (
                     <img
-                      src={kepala?.foto || ""}
+                      src={kepala.foto}
                       alt="Kepala Sekolah"
                       className="w-full h-full object-cover"
                     />
