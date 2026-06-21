@@ -24,8 +24,8 @@ export const heroSlides: HeroSlide[] = [
 
 // Homepage stats content using icon keys to keep this file presentation-agnostic.
 export const schoolStatsConfig: SchoolStatConfig[] = [
-  { label: "Total Siswa", value: 557, iconKey: "students" },
+  { label: "Total Siswa", value: 804, iconKey: "students" },
   { label: "Guru & Tendik", value: 49, iconKey: "teachers" },
-  { label: "Total Alumni", value: 642, iconKey: "alumni" },
+  { label: "Total Alumni", value: 3942, iconKey: "alumni" },
 ];
 
