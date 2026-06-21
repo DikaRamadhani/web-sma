@@ -41,21 +41,21 @@ export default function TentangKamiPage() {
               <span className="text-xs font-bold uppercase tracking-wider text-brand-primary">Sejarah Sekolah</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-slate-900 leading-tight">
-              Pilar Pendidikan Sejak <span className="text-brand-primary">1980</span>
+              Profil Singkat  <span className="text-brand-primary">SMAN 1 Bangunrejo</span>
             </h2>
             <div className="space-y-4 text-slate-600 leading-relaxed text-lg">
               <p>
-                Berdiri sejak tahun 1980, SMA Negeri 1 Bangunrejo telah menjadi salah satu pilar pendidikan di kota kami. Bermula dari sebuah bangunan sederhana, sekolah ini terus berkembang dan berinovasi untuk memberikan pendidikan berkualitas yang relevan dengan tantangan zaman.
+                SMAN 1 Bangunrejo adalah sekolah menengah atas negeri yang berlokasi di Kecamatan Bangunrejo, Kabupaten Lampung Tengah, Provinsi Lampung. Sekolah ini berdiri berdasarkan Surat Keputusan Nomor 58/KPTS/07/2006 tanggal 1 Maret 2006 untuk memenuhi kebutuhan pendidikan menengah atas di wilayah Bangunrejo dan sekitarnya. Dengan akreditasi A, SMAN 1 Bangunrejo berkomitmen memberikan pendidikan berkualitas melalui pengembangan prestasi akademik, karakter, dan keterampilan peserta didik yang didukung oleh tenaga pendidik kompeten serta sarana dan prasarana yang memadai.
               </p>
               <p>
-                Dengan dedikasi para pendiri dan dukungan masyarakat, SMANSA telah melahirkan ribuan alumni yang berprestasi di berbagai bidang, baik di tingkat nasional maupun internasional. Kami bangga menjadi bagian dari perjalanan mereka dan akan terus berkomitmen untuk mencetak generasi penerus yang unggul dan berkarakter.
+                Dengan dedikasi para pendiri dan dukungan masyarakat, SMAN 1 Bangunrejo telah melahirkan banyak alumni yang berprestasi di berbagai bidang, baik di tingkat regional maupung nasinal. Kami bangga menjadi bagian dari perjalanan mereka dan akan terus berkomitmen untuk mencetak generasi penerus yang unggul dan berkarakter.
               </p>
             </div>
           </RevealOnScroll>
 
           <RevealOnScroll direction="right" className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
             <Image 
-              src="https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=1000&auto=format&fit=crop" 
+              src="/img/5.png" 
               alt="Gedung Sekolah" 
               fill 
               className="object-cover"
