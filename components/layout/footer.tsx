@@ -11,6 +11,8 @@ import {
   Phone,
   MapPin,
   ArrowRight,
+  Github,
+  GithubIcon,
 } from "lucide-react";
 import { menuData } from "@/lib/data";
 import { motion } from "framer-motion";
@@ -184,33 +186,37 @@ export default function Footer() {
             </span>
             . All Rights Reserved.
           </p>
-          <p className="text-xs text-slate-600 flex flex-col items-center md:items-end gap-1 font-medium">
-            <span>Built by</span>
+          <p className="text-xs text-slate-500 flex flex-col items-center md:items-end gap-2.5 font-medium tracking-wide">
+      <span className="text-slate-600 font-semibold">Built by</span>
 
-            <a
-              href="https://github.com/dehendywijay"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative group/name px-1.5 py-0.5"
-            >
-              <span className="relative z-10 text-brand-primary font-bold transition-all duration-300 group-hover/name:text-white inline-block group-hover/name:scale-110">
-                Dehendy
-              </span>
-              <span className="absolute inset-0 bg-brand-primary scale-x-0 group-hover/name:scale-x-100 transition-transform duration-300 origin-left rounded-md -z-0" />
-            </a>
+      <div className="flex flex-col gap-1.5 items-center md:items-end">
+        <a
+          href="https://github.com/dehendywijay"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative group/name px-2 py-1 inline-flex items-center gap-1.5"
+        >
+          <GithubIcon className="w-3.5 h-3.5 text-brand-primary group-hover/name:text-white transition-colors duration-300" />
+          <span className="relative z-10 text-brand-primary font-bold transition-all duration-300 group-hover/name:text-white inline-block group-hover/name:scale-110 tracking-tight">
+            Dehendy
+          </span>
+          <span className="absolute inset-0 bg-brand-primary scale-x-0 group-hover/name:scale-x-100 transition-transform duration-300 origin-left rounded-md -z-0" />
+        </a>
 
-            <a
-              href="https://github.com/DikaRamadhani"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative group/name px-1.5 py-0.5"
-            >
-              <span className="relative z-10 text-brand-primary font-bold transition-all duration-300 group-hover/name:text-white inline-block group-hover/name:scale-110">
-                Dika
-              </span>
-              <span className="absolute inset-0 bg-brand-primary scale-x-0 group-hover/name:scale-x-100 transition-transform duration-300 origin-left rounded-md -z-0" />
-            </a>
-          </p>
+        <a
+          href="https://github.com/DikaRamadhani"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative group/name px-2 py-1 inline-flex items-center gap-1.5"
+        >
+          <Github className="w-3.5 h-3.5 text-brand-primary group-hover/name:text-white transition-colors duration-300" />
+          <span className="relative z-10 text-brand-primary font-bold transition-all duration-300 group-hover/name:text-white inline-block group-hover/name:scale-110 tracking-tight">
+            Dika
+          </span>
+          <span className="absolute inset-0 bg-brand-primary scale-x-0 group-hover/name:scale-x-100 transition-transform duration-300 origin-left rounded-md -z-0" />
+        </a>
+      </div>
+    </p>
         </div>
       </div>
     </footer>
